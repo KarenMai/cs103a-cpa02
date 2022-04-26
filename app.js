@@ -120,77 +120,27 @@ app.get('/upsertDB',
 app.post('/coi/byZip',
   // show coi in a given zip
   async (req,res,next) => {
-    const {zipCode} = req.body;
+    console.log("Hello World");
+    const zipCode = req.body.zip;
+    console.log(zipCode);
     const coidata = await COI.findOne({zip:zipCode})
     res.locals.coidata = coidata
     res.render('coi')
   }
 )
 
+app.use(isLoggedIn)
+
 app.get('/coi/show/:zipCode',
   // show all info about a place given its zip
   async (req,res,next) => {
+    console.log("Hello World");
     const {zipCode} = req.params;
     const coidata = await COI.findOne({zip:zipCode})
     res.locals.coidata = coidata
     res.render('coi')
   }
 )
-
-
-app.use(isLoggedIn)
-
-app.get('/addCOI/:zip',
-  // add a zipcode to the user's InterestList
-  async (req,res,next) => {
-    try {
-      const zip = req.params.zip
-      const userId = res.locals.user._id
-      // check to make sure it's not already loaded
-      const lookup = await  InterestList.find({zup,userId})
-      if (lookup.length==0){
-        const InterestList = new  InterestList({zip,userId})
-        await InterestList.save()
-      }
-      res.redirect('/InterestList/show')
-    } catch(e){
-      next(e)
-    }
-  })
-
-app.get('/coi/remove/:zip',
-  // remove a zipcode from the user's InterestList
-  async (req,res,next) => {
-    try {
-      await  InterestList.remove(
-                {userId:res.locals.user._id,
-                 zip:req.params.zip})
-      res.redirect('/InterestList/show')
-
-    } catch(e){
-      next(e)
-    }
-  }
-)
-
-app.get('/InterestList/show',
-  // show the current user's InterestList
-  async (req,res,next) => {
-    try{
-      const userId = res.locals.user._id;
-      const courseIds = 
-         (await  InterestList .find({userId}))
-                        .sort(x => x.zipCode)
-                        .map(x => x.zip)
-      res.locals.courses = await COI.find({zip:{$in: courseIds}})
-      res.render('interest')
-    } catch(e){
-      next(e)
-    }
-  }
-)
-
-
 
 // here we catch 404 errors and forward to error handler
 app.use(function(req, res, next) {
@@ -213,7 +163,7 @@ app.use(function(err, req, res, next) {
 //  Starting up the server!
 // *********************************************************** //
 //Here we set the port to use between 1024 and 65535  (2^16-1)
-const port = process.env.PORT || "1025";
+const port = process.env.PORT || "1026";
 console.log('connecting on port '+port);
 app.set("port", port);
 

@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 var interestSchema = Schema( {
   userId: ObjectId,
-  locationId: ObjectId,
+  zip: String,
 } );
 
 module.exports = mongoose.model( 'InterestList', interestSchema );
