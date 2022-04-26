@@ -129,6 +129,17 @@ app.post('/coi/byZip',
   }
 )
 
+app.post('/coi/byState',
+  // show coi in a given state and renders  
+  async (req,res,next) => {
+    const state = req.body.state;
+    const coidata = await COI.find({stateusps:state})
+    console.log(coidata);
+    res.locals.coidata = coidata
+    res.json(coidata) // Trying out what happens when it is a json file that it is sent to.
+  }
+)
+
 app.use(isLoggedIn)
 
 app.get('/coi/show/:zipCode',
