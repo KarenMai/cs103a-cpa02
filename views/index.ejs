@@ -1,0 +1,22 @@
+    <div class="jumbotron">
+        <h1>CPA02: Child Opportunity Index (COI) Tracker By Zip Code</h1>
+        <p></p>
+    </div>
+
+    <p class="p-3 m-3 border border-primary bg-light">
+        The goal of this assignment is to write an app that will let
+        students pick the city they are interested in seeing the COI of. 
+    </p>
+    
+    <% if (true || loggedIn) {%>  
+        <form method="post" action="/coi/byZip">
+            Show COI by Zip Code: 
+              <input type="text" name="zip" 
+                     placeholder="e.g. 02454">
+            <input type="submit">
+        </form>
+        <br>
+        <a href="/schedule/show">Show Interested Locations</a>
+    <% } %>
+
+

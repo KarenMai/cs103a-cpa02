@@ -1,0 +1,49 @@
+<div class="bg-light m-5 p-2 border border-primary border-2">
+    
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #222f40;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #adabed;
+}
+</style>
+</head>
+<body>
+
+<h2></h2>
+
+<table>
+  <tr>
+    <th>Population</th>
+    <th>Name of the Place</th>
+    <th>Weighted average z-scores, overall COI, nationally-normed</th>
+    <th>Child Opportunity Levels, overall COI, nationally-normed</th>
+    <th>Child Opportunity Scores, overall COI, nationally-normed</th>
+  </tr>
+  <tr>
+    <td>  <%= coidata.pop %>     </td>
+    <td> <%= coidata.msaname15 %> </td>
+    <td><%= coidata.z_coi_nat%></td>
+    <td><%= coidata.c5_coi_nat%> </td>
+    <td><%= coidata.r_coi_nat%> </td>
+
+  </tr>
+</table>
+
+</body>
+</html>
+
+<div><a href="/addCoi/<%= coidata.zip %>">(add to list)</a></div>
