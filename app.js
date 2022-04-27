@@ -30,7 +30,9 @@ const coi = require('./public/data/coi_zipcode.json')
 //  Connecting to the database
 // *********************************************************** //
 const mongoose = require( 'mongoose' );
-const mongodb_URI = 'mongodb+srv://cs103a:mastery@cluster0.ozvn9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+require('dotenv').config()
+
+const mongodb_URI = process.env.mongodb_URI
 mongoose.connect( mongodb_URI, { useNewUrlParser: true, useUnifiedTopology: true } );
 // fix deprecation warnings
 mongoose.set('useFindAndModify', false); 
